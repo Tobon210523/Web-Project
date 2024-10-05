@@ -1,0 +1,19 @@
+
+    <div class="container">
+        <h2 class="title">Iniciar Sesión</h2>
+        <form [formGroup] ="signInForm">
+            <div class="input-group">
+                <label for="email" class="label">username</label>
+                <input type="text" id="userName" formControlName="userName" placeholder="userName" required>
+            </div>
+            <div class="input-group">
+                <label for="password" class="label">Contraseña</label>
+                <input type="password" id="password" formControlName="password" placeholder="********" required>
+            </div>
+            <button (click)="onSignIn()" type="submit">Iniciar Sesión</button>
+        </form>
+        <p class="text">
+            ¿No tienes una cuenta? 
+            <a [routerLink] = "['/sign-up']">Regístrate aquí</a>
+        </p>
+    </div>

@@ -1,0 +1,25 @@
+
+<body class="page-body">
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+            <img 
+            [src]="profileImageUrl || 'https://via.placeholder.com/150'" 
+            alt="Foto de Perfil"
+            class="profile-image" 
+            (click)="triggerFileInput()">
+            <div class="profile-info">
+                <h2 class="profile-name">Nombre del Usuario</h2>
+                <p class="profile-email">correoejemplo.com</p>
+            </div>
+        </div>
+        <div class="bio-section">
+            <h3 class="bio-title">Biografía</h3>
+            <p class="bio-text">
+                Aquí puedes añadir una breve descripción de ti mismo. Este espacio es ideal para compartir información sobre tus intereses, experiencias y cualquier otro detalle que quieras que otros usuarios conozcan.
+            </p>
+        </div>
+    </div>
+
+</body>
