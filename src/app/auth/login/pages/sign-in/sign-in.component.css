@@ -1,5 +1,5 @@
 .body {
-    background-color: #f7fafc; /* bg-gray-100 */
+    background-color: #f7fafc;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +12,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
     border-radius: 0.5rem; /* rounded-lg */
     padding: 2rem; /* p-8 */
-    width: 24rem; /* w-96 */
+    width: auto; /* w-96 */
 }
 
 .title {

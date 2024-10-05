@@ -9,7 +9,7 @@ import { GalleryItem } from '../../features/home/interfaces/gallery-item.interfa
 export class UserService {
   userSignal = signal<User>({userName:'', password:'', email:'', role:'', profilePicture: '', propertiesList:['']});
 
-  register(user:User): LoginResponse{
+  signUp(user:User): LoginResponse{
     if (localStorage.getItem(user.userName.toLowerCase().trim())) {
       return {
         success: false,
@@ -25,7 +25,7 @@ export class UserService {
     }
   }
 
-  login(userName: string, password: string) :LoginResponse{
+  signIn(userName: string, password: string) :LoginResponse{
     const userSrt = localStorage.getItem(userName.toLowerCase().trim());
     if(!userSrt){
       return {
@@ -45,6 +45,20 @@ export class UserService {
       success: true
     }
     
+  }
+
+  setUser(user:User){
+    localStorage.setItem('loggedUser', JSON.stringify(user));
+    this.userSignal.set(user);
+  }
+
+  getUser(){
+    const userSrt = localStorage.getItem('loggedUser');
+    if(userSrt){
+      const user = JSON.parse(userSrt);
+      this.userSignal.set(user);
+    }
+    return this.userSignal;
   }
   
   logout(){
@@ -78,20 +92,6 @@ export class UserService {
 
   updateGallery(userName:string, gallery:GalleryItem[]){
     localStorage.setItem(`imgs-${userName}`, JSON.stringify(gallery));
-  }
-
-  setUser(user:User){
-    localStorage.setItem('loggedUser', JSON.stringify(user));
-    this.userSignal.set(user);
-  }
-
-  getUser(){
-    const userSrt = localStorage.getItem('loggedUser');
-    if(userSrt){
-      const user = JSON.parse(userSrt);
-      this.userSignal.set(user);
-    }
-    return this.userSignal;
   }
 
   saveUserToLocalStorage(user: any) {

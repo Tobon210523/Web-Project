@@ -35,7 +35,7 @@ export class SignInComponent {
     }
     let userName = this.signInForm.value.userName||'';
     let password = this.signInForm.value.password||'';
-    let response = this.userService.login(userName, password);
+    let response = this.userService.signIn(userName, password);
     if(response.success){
       this.router.navigateByUrl('/home');
     }else{
@@ -45,7 +45,5 @@ export class SignInComponent {
         type: 'error'
       })
     }
-
   }
-
 }

@@ -38,7 +38,7 @@ export class SignUpComponent {
       let email = this.signUpForm.value.email || '';
       let password = this.signUpForm.value.password || '';
       let role = this.signUpForm.value.role || '';
-      let response = this.userService.register({userName, password, email, role})
+      let response = this.userService.signUp({userName, password, email, role})
       if(response.success){
         this.router.navigateByUrl('/home');
       }else{
