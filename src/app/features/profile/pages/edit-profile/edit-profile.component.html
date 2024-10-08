@@ -1,0 +1,42 @@
+<body class="bg-gray-200 flex justify-center items-center pt-64 pb-32 font-poppins">
+    <section class="bg-white shadow-md w-3/5 rounded-2xl flex-col items-center px-8 py-8 relative">
+        <div class="absolute right-8 top-8 flex space-x-3">
+            <button class=" text-center text-lg font-normal flex hover border border-green-600 rounded-full py-2 px-3 hover:bg-green-400 hover:text-white"
+                (click)="onSave()">
+                Guardar
+            </button>
+            <button class=" text-center text-lg font-normal flex hover border border-red-600 rounded-full py-2 px-3 hover:bg-red-400 hover:text-white"
+                [routerLink]="['/profile']">
+                Cancelar
+            </button>
+        </div>
+        <h1 class="text-2xl font-medium">Editar Perfil</h1>
+        <p class="text-base mt-6 mb-3 font-medium">Foto de perfil</p>
+        <div class="flex space-x-8 items-center mb-12">
+            <div class="flex space-x-4 items-center">
+                <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+                <img
+                [src]="profilePicture || 'https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/unnamed.jpg'" 
+                alt="Foto de Perfil"
+                width="150"
+                height="150"
+                class="rounded-full">
+                <div class="border border-gray-400 bg-gray-200 flex items-center p-3 rounded-lg">
+                    <button (click)="triggerFileInput()" class="p-1 bg-gray-300 border border-black rounded-md">Seleccionar foto de perfil</button>
+                </div>
+            </div>
+        </div>
+        <div class="mb-5">
+            <h2 class="text-base font-medium mb-2">Nombre</h2>
+            <div class="text-base font-medium w-full p-3 bg-gray-200 rounded-md">{{userName}}</div>
+        </div>
+        <div class="mb-5">
+            <h2 class="text-base font-medium mb-2">Correo electrónico</h2>
+            <input class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="email">
+        </div>
+        <div>
+            <h2 class="text-base font-medium mb-2">Biografía</h2>
+            <input class="text-sm font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="biography">
+        </div>
+    </section>
+</body>
