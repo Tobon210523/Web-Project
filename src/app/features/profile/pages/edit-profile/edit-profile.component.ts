@@ -43,12 +43,7 @@ export class EditProfileComponent {
       fileReader.readAsDataURL(file);
     }
   }
-
-  updateProfilePicture(imageUrl: string) {
-    const user = this.userService.getUser();
-    user.profilePicture = imageUrl;
-    localStorage.setItem('loggedUser', JSON.stringify(user));
-  }
+  
   async onSave() {
     let publicUrl: string | undefined;
     if (this.selectedFile) {
@@ -65,7 +60,7 @@ export class EditProfileComponent {
     user.biography = this.biography;
 
     if (publicUrl) {
-      user.profilepicture = publicUrl;
+      user.profilePicture = publicUrl;
     }
 
     localStorage.setItem('loggedUser', JSON.stringify(user));

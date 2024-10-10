@@ -1,1 +1,118 @@
-<p>new-propertie works!</p>
+
+<body class="bg-white flex-col justify-center items-center pt-64 pb-32 font-poppins px-10">
+    <h1 class="text-5xl text-center font-semibold mb-7">Añadir Nueva Propiedad</h1>
+    <section class="flex-col px-7 py-5 bg-gray-300 rounded-3xl shadow-md">
+        <form [formGroup]="newPropertieForm">
+        <div class="flex mb-4">
+            <div class="flex-col space-y-3 w-2/4 mr-4">
+                <div class="mb-4">
+                    <label for="title" class="text-lg font-normal">Título</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="text"
+                    id="title"
+                    formControlName="title"
+                    placeholder="Título de la propiedad" required>
+                </div>
+                <div class="mb-4">
+                    <label for="price" class="text-lg font-normal">Precio por noche</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="number"
+                    id="price"
+                    formControlName="price"
+                    placeholder="Ej. 100" required>
+                </div>
+                <div class="mb-4">
+                    <label for="bathrooms" class="text-lg font-normal">Número de baños</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="number"
+                    id="bathrooms"
+                    formControlName="bathrooms"
+                    placeholder="Ej. 2" required>
+                </div>
+                <div class="mb-4">
+                    <label for="date" class="text-lg font-normal">Fecha disponible</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="date"
+                    id="date"
+                    formControlName="date" required>
+                </div>
+            </div>
+            <div class="w-2/4 ml-4">
+                <div class="mb-4">
+                    <label for="direction" class="text-lg font-normal">Dirección</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="text"
+                    id="direction"
+                    formControlName="direction"
+                    placeholder="Dirección de la propiedad" required>
+                </div>
+                <div class="mb-4">
+                    <label for="rooms" class="text-lg font-normal">Número de habitaciones</label>
+                    <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+                    type="number"
+                    id="rooms"
+                    formControlName="rooms"
+                    placeholder="Ej. 3" required>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="description" class="text-lg font-normal">Descripción</label>
+            <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+            type="text"
+            id="description"
+            formControlName="description"
+            placeholder="Describe tu propiedad" required>
+        </div>
+    </form>
+        <div class="flex justify-around mb-7">
+            <div>
+                <input type="file" id="principalPhoto" (change)="onFilePrincipalPhoto($event)" hidden>
+                <img [src] = "principalPhoto || 'https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/casa.jpeg'"
+                alt="Imagen de la casa"
+                width="150"
+                height="150">
+                <button class="p-1 bg-gray-300 border border-black rounded-md"
+                (click)="triggerPrincipalInput()">
+                    Seleccionar foto principal</button>
+            </div>
+            <div>
+                <input type="file" id="firtsPhoto" (change)="onFileFirtsPhoto($event)" hidden>
+                <img [src] = "firtsPhoto || 'https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/casa.jpeg'"
+                alt="Imagen de la casa"
+                width="150"
+                height="150">
+                <button class="p-1 bg-gray-300 border border-black rounded-md"
+                (click)="triggerFirtsInput()">
+                    Seleccionar foto</button>
+            </div>
+            <div>
+                <input type="file" id="secondPhoto" (change)="onFileSecondPhoto($event)" hidden>
+                <img [src] = "secondPhoto || 'https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/casa.jpeg'"
+                alt="Imagen de la casa"
+                width="150"
+                height="150">
+                <button class="p-1 bg-gray-300 border border-black rounded-md"
+                (click)="triggerSecondInput()">
+                    Seleccionar foto</button>
+            </div>
+            <div>
+                <input type="file" id="thirdPhoto" (change)="onFileThirdPhoto($event)" hidden>
+                <img [src] = "thirdPhoto || 'https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/casa.jpeg'"
+                alt="Imagen de la casa"
+                width="150"
+                height="150">
+                <button class="p-1 bg-gray-300 border border-black rounded-md"
+                (click)="triggerThirdInput()">
+                    Seleccionar foto</button>
+            </div>
+        </div>
+        <div class="flex items-center justify-center ">
+            <button class="rounded-2xl text-xl font-semibold p-3 bg-green-600 hover:bg-green-700 text-white"
+            (click)="onAddPropertie()">
+                Añadir propiedad
+            </button>
+        </div>
+    </section>
+</body>
+

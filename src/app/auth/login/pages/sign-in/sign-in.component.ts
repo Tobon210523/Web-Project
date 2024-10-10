@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SHARED_IMPORTS } from '../../../../constants/shared-imports';
 import { UserService } from '../../../services/user.service';
-import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -16,9 +16,9 @@ export class SignInComponent {
   
   signInForm!: FormGroup;
 
-  constructor(private fb:FormBuilder, private router: Router, private userService: UserService){
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService){
   this.signInForm = this.fb.group({
-    userName:['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+    userName:['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
     password:['', [Validators.required]]
   })
 
@@ -26,24 +26,16 @@ export class SignInComponent {
 
   onSignIn(){
     if (!this.signInForm.valid) {
-      swal({
-        title: 'Campos vacíos',
-        text: 'Debes diligenciar todos los campos',
-        type: 'error'
-      })
+      console.log('no es valido')
       return;
     }
-    let userName = this.signInForm.value.userName||'';
-    let password = this.signInForm.value.password||'';
+    let userName = this.signInForm.value.userName || '';
+    let password = this.signInForm.value.password || '';
     let response = this.userService.signIn(userName, password);
     if(response.success){
       this.router.navigateByUrl('/home');
     }else{
-      swal({
-        title: 'Error',
-        text: response.message,
-        type: 'error'
-      })
+      console.log('Error al iniciar sesión')
     }
   }
 }

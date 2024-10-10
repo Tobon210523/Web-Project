@@ -1,19 +1,30 @@
 
-<div class="container">
-    <h2 class="title">Iniciar Sesión</h2>
-    <form [formGroup] ="signInForm">
-        <div class="input-group">
-            <label for="email" class="label">username</label>
-            <input type="text" id="userName" formControlName="userName" placeholder="userName" required>
+<body class="bg-gray-200 flex justify-center items-center pt-64 pb-32">
+<div class="bg-white shadow-md w-96 rounded-2xl flex-col items-center px-8 py-8">
+    <h1 class="text-2xl font-poppins font-semibold mb-6 text-center">Iniciar sesión</h1>
+    <form class="flex-col" [formGroup] ="signInForm">
+        <div class="mb-4">
+            <label for="userName" class="text-base font-poppins font-light">Nombre de usuario</label>
+            <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600" 
+            type="text" 
+            id="userName" 
+            formControlName="userName" 
+            placeholder="userName" required>
         </div>
-        <div class="input-group">
-            <label for="password" class="label">Contraseña</label>
-            <input type="password" id="password" formControlName="password" placeholder="********" required>
+        <div>
+            <label for="password" class="text-base font-poppins font-light">Contraseña</label>
+            <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
+            type="password" 
+            id="password" 
+            formControlName="password" 
+            placeholder="contraseña" required>
         </div>
-        <button (click)="onSignIn()" type="submit">Iniciar Sesión</button>
     </form>
-    <p class="text">
+    <button class="text-white bg-green-600 hover:bg-green-800 text-center w-full py-2 font-poppins font-semibold rounded-3xl mt-6"
+    (click)="onSignIn()">Iniciar Sesión</button>
+    <p class="text-center mt-5">
         ¿No tienes una cuenta? 
-        <a [routerLink] = "['/sign-up']">Regístrate aquí</a>
+        <a [routerLink] = "['/sign-up']" class="text-green-600">Regístrate aquí</a>
     </p>
 </div>
+</body>

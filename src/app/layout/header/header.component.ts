@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SHARED_IMPORTS } from '../../../constants/shared-imports';
-import { UserService } from '../../../auth/services/user.service';
+import { SHARED_IMPORTS } from '../../constants/shared-imports';
+import { UserService } from '../../auth/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,10 @@ export class HeaderComponent {
   async onLogout(){
     await this.userservice.logout()
     this.router.navigateByUrl('/sign-in')
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('loggedUser') !== null;
   }
 
 }

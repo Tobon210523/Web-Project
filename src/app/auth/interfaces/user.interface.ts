@@ -3,6 +3,6 @@ export interface User{
     password:string;
     email:string;
     role:string;
+    biography?:string;
     profilePicture?:string;
-    propertiesList?:[string]
 }

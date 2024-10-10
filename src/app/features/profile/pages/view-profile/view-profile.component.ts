@@ -22,4 +22,10 @@ export class ViewProfileComponent {
     this.profilePicture = this.userService.getProfilePicture();
     this.biography = this.userService.getBiography();
   }
+
+  isOwner(){
+    const user = this.userService.getUser();
+    console.log(user.role === 'owner')
+    return user.role === 'owner'
+  }
 }

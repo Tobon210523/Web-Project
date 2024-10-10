@@ -13,16 +13,15 @@ export class SupabaseService {
   async upload(file:File, fileName:string, folderName:string = 'base'){
     const { error } = await this.supabase
       .storage
-      .from('profile-pictures')
+      .from('web')
       .upload(`${folderName}/${fileName}`, file);
     if(error){
-      alert(error.message);
       return;
     }
 
     const { data } = await this.supabase
       .storage
-      .from('profile-pictures')
+      .from(folderName)
       .getPublicUrl(`${folderName}/${fileName}`)
     return data.publicUrl;
   }

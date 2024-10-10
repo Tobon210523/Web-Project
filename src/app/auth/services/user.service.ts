@@ -1,105 +1,114 @@
 import { Injectable, signal } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { LoginResponse} from '../interfaces/LoginResponse';
-import { GalleryItem } from '../../features/home/interfaces/gallery-item.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  userSignal = signal<User>({userName:'', password:'', email:'', role:'', profilePicture: '', propertiesList:['']});
-
-  signUp(user:User): LoginResponse{
-    if (localStorage.getItem(user.userName.toLowerCase().trim())) {
+  userSignal = signal<User>({
+    userName: '',
+    password: '',
+    email: '',
+    role: '',
+    profilePicture: ''
+  });
+  
+  signUp(user: User): LoginResponse {
+    const usersStr = localStorage.getItem('users');
+    const users: User[] = usersStr ? JSON.parse(usersStr) : [];
+  
+    const existingUser = users.find(u => u.userName.toLowerCase().trim() === user.userName.toLowerCase().trim());
+    if (existingUser) {
       return {
         success: false,
         message: 'Usuario ya existe'
-      }
+      };
     }
-    const userSrt = JSON.stringify(user);
-    localStorage.setItem(user.userName.toLowerCase().trim(), userSrt);
+  
+    users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+  
     this.setUser(user);
+  
     return {
       success: true,
-      message: 'se registró'
-    }
+      message: 'Se registró correctamente'
+    };
   }
-
-  signIn(userName: string, password: string) :LoginResponse{
-    const userSrt = localStorage.getItem(userName.toLowerCase().trim());
-    if(!userSrt){
+  
+  signIn(userName: string, password: string): LoginResponse {
+    const usersStr = localStorage.getItem('users');
+    if (!usersStr) {
       return {
         success: false,
         message: 'Usuario o contraseña incorrectos'
-      }
+      };
     }
-    const user:User = JSON.parse(userSrt);
-    if (user.password !== password) {
+  
+    const users: User[] = JSON.parse(usersStr);
+  
+    const user = users.find(u => u.userName.toLowerCase().trim() === userName.toLowerCase().trim());
+    if (!user || user.password !== password) {
       return {
         success: false,
         message: 'Usuario o contraseña incorrectos'
-      }
+      };
     }
+  
     this.setUser(user);
     return {
       success: true
-    }
-    
+    };
   }
-
-  setUser(user:User){
+  
+  setUser(user: User) {
     localStorage.setItem('loggedUser', JSON.stringify(user));
     this.userSignal.set(user);
   }
-
-  getUser(){
-    const userSrt = localStorage.getItem('loggedUser');
-    if(userSrt){
-      const user = JSON.parse(userSrt);
-      this.userSignal.set(user);
+  
+  getUser() {
+    const userObject = localStorage.getItem('loggedUser');
+    if (userObject) {
+      return JSON.parse(userObject);
     }
-    return this.userSignal;
   }
   
-  logout(){
+  getUserName():string{
+    const user = this.getUser();
+    return user.userName;
+  }
+
+  getEmail():string{
+    const user = this.getUser();
+    return user.email;
+  }
+
+  getProfilePicture():string{
+    const user = this.getUser();
+    return user.profilePicture;
+  }
+
+  getBiography():string{
+    const user = this.getUser();
+      return user.biography;
+  }
+  
+  logout() {
+    const loggedUser = this.getUser();
+    if (loggedUser) {
+      const usersStr = localStorage.getItem('users');
+      if (usersStr) {
+        const users: User[] = JSON.parse(usersStr);
+        const userIndex = users.findIndex(u => u.userName === loggedUser.userName);
+        if (userIndex !== -1) {
+          users[userIndex] = loggedUser;  
+          localStorage.setItem('users', JSON.stringify(users)); 
+        }
+      }
+    }
     localStorage.removeItem('loggedUser');
-    this.userSignal.set({userName:'', password:'', email:'', role:''});
+    this.userSignal.set({ userName: '', password: '', email: '', role: '' });
   }
-
-  saveImage(id:string, url:string, userName:string){
-    const newImage:GalleryItem = {
-      id,
-      url,
-      comments:[]
-    }
-    let galleryStr = localStorage.getItem(`imgs-${userName}`);
-    if(galleryStr){
-      let gallery = JSON.parse(galleryStr);
-      gallery = [...gallery, newImage];
-      localStorage.setItem(`imgs-${userName}`, JSON.stringify(gallery));
-    }else{
-      localStorage.setItem(`imgs-${userName}`,JSON.stringify([newImage]));
-    }
-  }
-
-  getGallery(userName:string):GalleryItem[]{
-    let galleryStr = localStorage.getItem(`imgs-${userName}`);
-    if(galleryStr){
-      return JSON.parse(galleryStr);
-    }
-    return [];
-  }
-
-  updateGallery(userName:string, gallery:GalleryItem[]){
-    localStorage.setItem(`imgs-${userName}`, JSON.stringify(gallery));
-  }
-
-  saveUserToLocalStorage(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  getUserFromLocalStorage(): any {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
-  }
+  
 }
