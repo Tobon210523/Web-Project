@@ -6,7 +6,15 @@ import { Propertie } from '../interfaces/propertie.interface';
 })
 export class PropertieService {
 
-  constructor() { }
+  propertie: Propertie = {
+    userName: '',
+    title: '',
+    price: 0,
+    bathrooms: 0,
+    location: '',
+    rooms: 0,
+    description: ''
+  }; 
 
   addPropertie(propertie: Propertie){
     const propertieStr = localStorage.getItem('properties');
@@ -16,7 +24,11 @@ export class PropertieService {
     return{sucess: true}
   }
 
+  setPropertie(propertie: Propertie){
+    this.propertie = propertie;
+  }
+
   getPropertie(){
-    
+    return this.propertie;
   }
 }

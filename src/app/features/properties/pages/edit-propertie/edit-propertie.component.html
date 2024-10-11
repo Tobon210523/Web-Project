@@ -1,1 +1,50 @@
-<p>edit-propertie works!</p>
+<body class="bg-gray-200 flex-col flex justify-center items-center pt-64 pb-32 font-poppins">
+    <div class="bg-white shadow-md w-11/12 rounded-2xl flex-col px-8 py-8 relative mb-6">
+        <div class="text-center text-4xl font-medium mb-12">Editar propiedad</div>
+        <div class="flex">
+        <section class="w-2/4 space-y-10 flex-col mr-5">
+            <div class="mb-2">
+                <h2 class="text-lg font-medium mb-3">Título de la propiedad:</h2>
+                <input type="text" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="title">
+            </div>
+            <div class="mb-2">
+                <h2 class="text-lg font-medium mb-3">Descripción:</h2>
+                <input type="text" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="description">
+            </div>
+            <div class="mb-2">
+                <h2 class="text-lg font-medium mb-3">Precio por noche:</h2>
+                <input type="number" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="price">
+            </div>
+            <div class="mb-2">
+                <h2 class="text-lg font-medium mb-3">Ubicación:</h2>
+                <input type="text" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="location">
+            </div>
+            <div class=" flex-row flex mb-2">
+                <div class="flex-col w-2/4 mr-6">
+                    <h2 class="text-lg font-medium mb-3">Habitaciones:</h2>
+                    <input type="number" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="rooms">
+                </div>
+                <div class="flex-col w-2/4">
+                    <h2 class="text-lg font-medium mb-3">Baños:</h2>
+                    <input type="number" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="bathrooms">
+                </div>
+            </div>
+            <div class="mb-2">
+                <h2 class="text-lg font-medium mb-3">Fecha disponible:</h2>
+                <input type="date" class="text-base font-medium w-full p-3 bg-gray-200 rounded-md" [(ngModel)]="date">
+            </div>
+            <button class="text-center text-xl font-normal hover border border-green-600 rounded-md py-3 px-3 hover:bg-green-400 hover:text-white w-full"
+            (click)="onSave()">
+                Guardar cambios
+            </button>
+        </section>
+        <section class="w-2/4 ml-5">
+            <img [src]="principalPhoto" alt="foto principal de la propiedad" width="250" height="250">
+            <button class="text-center  mt-7 text-xl font-normal hover border border-red-600 rounded-lg py-3 px-3 hover:bg-red-400 hover:text-white w-full"
+            (click)="onDelete()">
+                Eliminar propiedad
+            </button>
+        </section>
+        </div>
+    </div>
+</body>

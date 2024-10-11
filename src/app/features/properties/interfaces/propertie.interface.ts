@@ -3,8 +3,8 @@ export interface Propertie{
     title:string;
     price:number;
     bathrooms:number;
-    date:Date;
-    direction:string;
+    date?:Date;
+    location:string;
     rooms:number;
     description:string;
     principalPhoto?:string;

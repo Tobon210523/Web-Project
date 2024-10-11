@@ -21,7 +21,7 @@ export class SupabaseService {
 
     const { data } = await this.supabase
       .storage
-      .from(folderName)
+      .from('web')
       .getPublicUrl(`${folderName}/${fileName}`)
     return data.publicUrl;
   }

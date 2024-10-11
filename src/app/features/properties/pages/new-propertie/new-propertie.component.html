@@ -39,12 +39,12 @@
             </div>
             <div class="w-2/4 ml-4">
                 <div class="mb-4">
-                    <label for="direction" class="text-lg font-normal">Dirección</label>
+                    <label for="location" class="text-lg font-normal">Ubicación</label>
                     <input class="p-2 border border-gray-300 w-full rounded-md focus:outline-none focus:border-green-600"
                     type="text"
-                    id="direction"
-                    formControlName="direction"
-                    placeholder="Dirección de la propiedad" required>
+                    id="location"
+                    formControlName="location"
+                    placeholder="Lugar donde esté tu propiedad" required>
                 </div>
                 <div class="mb-4">
                     <label for="rooms" class="text-lg font-normal">Número de habitaciones</label>
@@ -107,10 +107,14 @@
                     Seleccionar foto</button>
             </div>
         </div>
-        <div class="flex items-center justify-center ">
+        <div class="flex items-center justify-center space-x-10">
             <button class="rounded-2xl text-xl font-semibold p-3 bg-green-600 hover:bg-green-700 text-white"
             (click)="onAddPropertie()">
                 Añadir propiedad
+            </button>
+            <button class="rounded-2xl text-xl font-semibold p-3 bg-red-600 hover:bg-red-700 text-white"
+            [routerLink]="['/profile']">
+                Atrás
             </button>
         </div>
     </section>

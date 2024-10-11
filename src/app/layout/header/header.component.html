@@ -4,7 +4,7 @@
         class="flex items-center text-xl font-medium font-poppins px-14 pt-10 pb-6 ">
             <img [routerLink] = "['/home']"
             class="cursor-pointer"
-            src="https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/profile-pictures/images/logo%20aircnc.png" 
+            src="https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/web/images/logo%20aircnc.png" 
             alt="imagen AirCNC" 
             width="150" 
             height="60">
@@ -24,7 +24,8 @@
                 Cerrar sesión</button>
             </div>
             <ng-template #notLoggedIn>
-                <button class="border-2 border-green-600 text-green-600 items-center justify-center p-3 rounded-md hover:bg-green-400 hover:text-white">
+                <button class="border-2 border-green-600 text-green-600 items-center justify-center p-3 rounded-md hover:bg-green-400 hover:text-white"
+                    [routerLink]="['/sign-in']">
                   Iniciar Sesión
                 </button>
               </ng-template>

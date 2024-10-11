@@ -4,6 +4,7 @@ import { PropertieService } from '../../services/propertie.service';
 import { UserService } from '../../../../auth/services/user.service';
 import { SHARED_IMPORTS } from '../../../../constants/shared-imports';
 import { SupabaseService } from '../../../profile/services/supabase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-propertie',
@@ -24,13 +25,13 @@ export class NewPropertieComponent {
   secondPhotoFile: File | null = null;
   thirdPhotoFile: File | null = null;
 
-  constructor(private formBuilder: FormBuilder, private propertieService: PropertieService, private userService: UserService, private supabaseService: SupabaseService){
+  constructor(private formBuilder: FormBuilder, private propertieService: PropertieService, private userService: UserService, private supabaseService: SupabaseService, private router: Router){
     this.newPropertieForm= this.formBuilder.group({
       title: ['', Validators.required],
       price: ['', Validators.required],
       bathrooms: ['', Validators.required],
       date: ['', Validators.required],
-      direction: ['', Validators.required],
+      location: ['', Validators.required],
       rooms: ['', Validators.required],
       description: ['', Validators.required]
     })
@@ -112,9 +113,13 @@ export class NewPropertieComponent {
         if (!publicUrl) {
           return;
         }
-        images[index]= publicUrl;
+        images[index] = publicUrl;
       }
     }
+    this.principalPhoto=images[0];
+    this.firtsPhoto=images[1];
+    this.secondPhoto = images[2];
+    this.thirdPhoto = images[3];
   }
 
   async onAddPropertie(){
@@ -124,26 +129,30 @@ export class NewPropertieComponent {
       let price = this.newPropertieForm.value.price || '';
       let bathrooms = this.newPropertieForm.value.bathrooms || '';
       let date = this.newPropertieForm.value.date || '';
-      let direction = this.newPropertieForm.value.direction || '';
+      let location = this.newPropertieForm.value.location || '';
       let rooms = this.newPropertieForm.value.rooms || '';
       let description = this. newPropertieForm.value.description || '';
       let userName = this.userService.getUser()?.userName;
       let principalPhoto = this.principalPhoto;
+      let firtsPhoto = this.firtsPhoto;
+      let secondPhoto = this.secondPhoto;
+      let thirdPhoto = this.thirdPhoto
       let response = this.propertieService.addPropertie({
         userName, 
         title,
         price,
         bathrooms,
         date,
-        direction,
+        location,
         rooms, 
         description, 
         principalPhoto,
-        firtsPhoto:this.firtsPhoto,
-        secondPhoto:this.secondPhoto,
-        thirdPhoto:this.thirdPhoto})
+        firtsPhoto,
+        secondPhoto,
+        thirdPhoto})
       if(response.sucess){
         console.log('exitoso')
+        this.router.navigateByUrl('/profile')
       }else{
         console.log('falló')
       }
@@ -156,10 +165,10 @@ export class NewPropertieComponent {
     const priceControl = this.newPropertieForm.get('price');
     const bathroomsControl = this.newPropertieForm.get('bathrooms');
     const dateControl = this.newPropertieForm.get('date');
-    const directionControl = this.newPropertieForm.get('direction');
+    const locationControl = this.newPropertieForm.get('location');
     const roomsControl = this.newPropertieForm.get('rooms');
     const descriptionControl = this.newPropertieForm.get('description');
-     if(!titleControl || !priceControl || !bathroomsControl || !dateControl || !directionControl || !roomsControl || !descriptionControl){
+     if(!titleControl || !priceControl || !bathroomsControl || !dateControl || !locationControl || !roomsControl || !descriptionControl){
       console.log('error');
       validated = false;
      }else if(!titleControl.valid){
@@ -174,8 +183,8 @@ export class NewPropertieComponent {
      }else if(!dateControl.valid){
       console.log(dateControl.errors)
       validated = false;
-     }else if(!directionControl.valid){
-      console.log(directionControl.errors)
+     }else if(!locationControl.valid){
+      console.log(locationControl.errors)
       validated = false;
      }else if(!roomsControl.valid){
       console.log(roomsControl.errors)
