@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class ViewProfileComponent {
   userName: string = 'Nombre de usuario';
   email: string = 'email de usuario';
-  profilePicture: string = 'foto del usuario';
+  profilePicture: string = '';
   biography: string = 'Aquí puedes añadir tu biografía';
   properties: Propertie[] = [];
 

@@ -53,7 +53,7 @@ export class EditPropertieComponent {
     if (propertiesJSON) {
       const properties = JSON.parse(propertiesJSON);
       const index = properties.findIndex((propertie: Propertie) => 
-        propertie.title === this.title && propertie.userName === this.propertie.userName
+        propertie.title === this.propertie.title && propertie.userName === this.propertie.userName
       );
     
       if (index !== -1) {
@@ -66,29 +66,28 @@ export class EditPropertieComponent {
         properties[index].description = this.description;
         properties[index].principalPhoto = this.principalPhoto;
         localStorage.setItem('properties', JSON.stringify(properties));
+        this.router.navigateByUrl('/profile');
       }
-      this.router.navigateByUrl('/profile');
     }
   }
 
   onDelete(){
-    // Obtener propiedades desde el localStorage
-const propertiesJSON = localStorage.getItem('properties');
+    const propertiesJSON = localStorage.getItem('properties');
 
-if (propertiesJSON) {
-    let properties = JSON.parse(propertiesJSON);
+    if (propertiesJSON) {
+        let properties = JSON.parse(propertiesJSON);
 
-    const index = properties.findIndex((propertie: Propertie) => 
-      propertie.title === this.title && propertie.userName === this.propertie.userName
-    );
+        const index = properties.findIndex((propertie: Propertie) => 
+          propertie.title === this.title && propertie.userName === this.propertie.userName
+        );
 
-    if (index !== -1) {
-      properties.splice(index, 1);
+        if (index !== -1) {
+          properties.splice(index, 1);
 
-      localStorage.setItem('properties', JSON.stringify(properties));
-      this.router.navigateByUrl('/profile')
-    }
-  }
+          localStorage.setItem('properties', JSON.stringify(properties));
+          this.router.navigateByUrl('/profile')
+        }
+      }
   }
 
 }
