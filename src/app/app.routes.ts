@@ -7,6 +7,7 @@ import { NewPropertieComponent } from './features/properties/pages/new-propertie
 import { EditProfileComponent } from './features/profile/pages/edit-profile/edit-profile.component';
 import { EditPropertieComponent } from './features/properties/pages/edit-propertie/edit-propertie.component';
 import { ViewPropertieComponent } from './features/properties/pages/view-propertie/view-propertie.component';
+import { SearchPropertieComponent } from './features/properties/pages/search-propertie/search-propertie.component';
 
 
 export const routes: Routes = [
@@ -20,7 +21,8 @@ export const routes: Routes = [
     {path: 'edit-profile', component: EditProfileComponent},
     {path: 'new-propertie', component: NewPropertieComponent},
     {path: 'edit-propertie', component: EditPropertieComponent},
-    {path: 'view-properties', component: ViewPropertieComponent},
+    {path: 'view-propertie', component: ViewPropertieComponent},
+    {path: 'search-properties', component: SearchPropertieComponent},
     {path: '**', component: SignInComponent}
 
     

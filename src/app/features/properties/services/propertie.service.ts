@@ -6,16 +6,6 @@ import { Propertie } from '../interfaces/propertie.interface';
 })
 export class PropertieService {
 
-  propertie: Propertie = {
-    userName: '',
-    title: '',
-    price: 0,
-    bathrooms: 0,
-    location: '',
-    rooms: 0,
-    description: ''
-  }; 
-
   addPropertie(propertie: Propertie){
     const propertieStr = localStorage.getItem('properties');
     const properties: Propertie[] = propertieStr ? JSON.parse(propertieStr) : [];
@@ -25,10 +15,13 @@ export class PropertieService {
   }
 
   setPropertie(propertie: Propertie){
-    this.propertie = propertie;
+    localStorage.setItem('propertieSelected', JSON.stringify(propertie))
   }
 
   getPropertie(){
-    return this.propertie;
+    const propertieObject = localStorage.getItem('propertieSelected');
+    if(propertieObject){
+      return JSON.parse(propertieObject);
+    }
   }
 }

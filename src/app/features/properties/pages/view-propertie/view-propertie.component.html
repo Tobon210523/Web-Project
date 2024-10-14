@@ -1,17 +1,58 @@
-<body class="bg-gray-200 flex-col flex justify-center items-center pt-64 pb-32 font-poppins">
-    <h1 class="text-4xl font-medium mb-8">Propiedades</h1>
-    <section class="grid grid-cols-3 gap-12">
-        <div *ngFor="let propertie of properties" class="w-full">
-            <section class="bg-white shadow-md w-full rounded-2xl px-4 py-3 space-x-4 relative flex">
-            <div>
-                <img *ngIf="propertie.principalPhoto" [src]="propertie.principalPhoto" alt="Principal Photo" width="250" height="250"/>
-            </div>
-            <div>
-                <h2 class="text-xl font-normal mb-4">{{ propertie.title }}</h2>
-                <p class="text-gray-500 text-base font-light mb-4">Ubicación: {{ propertie.location }}</p>
-                <p class="text-green-600 text-lg font-semibold">${{ propertie.price }} /noche</p>
-            </div>
-            </section>
+<body class="bg-gray-200 flex-col flex justify-center items-center pt-64 pb-32 px-12 font-poppins">
+    <section class=" bg-white w-11/12 p-5 rounded-3xl flex-col">
+        <h1 class="text-4xl font-medium mb-8 text-center">{{propertie.title}}</h1>
+        <div class="flex">
+        <div class="w-2/4 mr-3">
+            <img [src]="propertie.principalPhoto" alt="imagen de la propiedad" width="600" height="600">
         </div>
+        <div class="flex-col w-2/4 ml-3">
+            <h2 class="text-2xl font-medium mb-3">Descripción</h2>
+            <p class="text-gray-500 text-lg mb-4">{{propertie.description}}</p>
+            <div class="flex ">
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-2xl font-medium mb-1">Precio por noche:</h2>
+                    <p class="text-gray-500 text-lg">$ {{propertie.price}}</p>
+                </div>
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-2xl font-medium mb-1">Ubicación:</h2>
+                    <p class="text-gray-500 text-lg">{{propertie.location}}</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-2xl font-medium mb-1">Habitaciones:</h2>
+                    <p class="text-gray-500 text-lg">{{propertie.rooms}} habitaciones</p>
+                </div>
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-2xl font-medium mb-1">Baños:</h2>
+                    <p class="text-gray-500 text-lg">{{propertie.bathrooms}} baños</p>
+                </div>
+            </div>
+            <h2 class="text-2xl font-medium mb-2">Fecha disponible</h2>
+            <p class="text-gray-500 text-lg mb-4">{{propertie.date}}</p>
+            <h2 class="text-2xl font-medium mb-2">Selecciona tus fechas</h2>
+            <div class="flex">
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-lg font-medium">Fecha de entrada:</h2>
+                    <input type="date">
+                </div>
+                <div class="flex-col w-2/4 mb-4">
+                    <h2 class="text-lg font-medium">Fecha de salida:</h2>
+                    <input type="date">
+                </div>
+            </div>
+            <button class="text-center text-xl font-normal hover border border-green-600 rounded-md py-3 px-3 hover:bg-green-400 hover:text-white w-full">
+                Reservar ahora
+            </button>
+        </div>
+    </div>
+    <section>
+        <h2 class="text-3xl font-medium mb-5">Imágenes</h2>
+        <div class="flex justify-around">
+            <img [src]="propertie.firtsPhoto" alt="primera foto" width="350" height="250">
+            <img [src]="propertie.secondPhoto" alt="segunda foto" width="350" height="250">
+            <img [src]="propertie.thirdPhoto" alt="tercer foto" width="350" height="250">
+        </div>
+    </section>
     </section>
 </body>

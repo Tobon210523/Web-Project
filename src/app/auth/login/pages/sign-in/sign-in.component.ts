@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SHARED_IMPORTS } from '../../../../constants/shared-imports';
 import { UserService } from '../../../services/user.service';
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -26,7 +28,12 @@ export class SignInComponent {
 
   onSignIn(){
     if (!this.signInForm.valid) {
-      console.log('no es valido')
+      Swal.fire({
+        title: 'Inicio fallido',
+        icon: 'error',
+        text: 'Usuario o contraseña incorrectos',
+        confirmButtonText: 'Entendido'
+      })
       return;
     }
     let userName = this.signInForm.value.userName || '';
@@ -35,7 +42,12 @@ export class SignInComponent {
     if(response.success){
       this.router.navigateByUrl('/home');
     }else{
-      console.log('Error al iniciar sesión')
+      Swal.fire({
+        title: 'Inicio fallido',
+        icon: 'error',
+        text: 'Usuario o contraseña incorrectos',
+        confirmButtonText: 'Entendido'
+      })
     }
   }
 }

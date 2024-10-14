@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Propertie } from '../../interfaces/propertie.interface';
 import { SHARED_IMPORTS } from '../../../../constants/shared-imports';
+import { PropertieService } from '../../services/propertie.service';
 
 @Component({
   selector: 'app-view-propertie',
@@ -10,12 +11,11 @@ import { SHARED_IMPORTS } from '../../../../constants/shared-imports';
   styleUrl: './view-propertie.component.css'
 })
 export class ViewPropertieComponent {
-  properties: Propertie[] = [];
+  constructor(private propertieService: PropertieService){}
+
+  propertie!: Propertie;
 
   ngOnInit(){
-    const propertiesFromStorage = localStorage.getItem('properties');
-    if (propertiesFromStorage) {
-      this.properties = JSON.parse(propertiesFromStorage);
-    }
+    this.propertie = this.propertieService.getPropertie();
   }
 }

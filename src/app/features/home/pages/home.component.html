@@ -1,4 +1,4 @@
-<section class="flex">
+<section class="flex mb-16">
     <div class="w-2/4 p-10">
         <p class="font-bold font-poppins mt-40">
             <span class="text-7xl">
@@ -14,7 +14,9 @@
             descubre el tuyo.
             </span>
         </p>
-        <input type="search" class=" mt-14 border-2 border-green-600 text-xl text-gray-400 rounded-lg p-4" placeholder="Buscar">
+        <button class="mt-14 border-2 border-green-600 text-xl text-gray-400 rounded-lg p-4 w-64 text-start"
+        [routerLink]="['/search-properties']">
+            Buscar</button>
     </div>
     <div class="w-2/4">
         <img src="https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/web/images/home-img.png" 
@@ -22,27 +24,39 @@
     </div>
 </section>
 <section class="flex">
-<div class="w-2/4">
-<img src="https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/web/images/feature-img.png" 
-alt="">
-</div>
-<div class="w-2/4">
-    <p class="text-center text-4xl font-semibold font-poppins pb-5">
-        <span>
-        Elije entre varios tipos de</span><br>
-        <span>alojamientos</span>
-    </p>
-    <p class="text-gray-400 text-xl text-center font-normal font-poppins">
-        <span>
-        Te ofrecemos varios tipos de alojamientos</span><br>
-        <span>
-        para tu familia y amigos</span>
-    </p>
-    <p class="text-start text-xl pb-4 font-poppins font-semibold">Los mejores lugares</p>
-    <p class="text-gray-400 items-start">
-        <span>
-        Garantizamos la mejor calidad en tus alojamientos</span><br>
-        <span>Desde AirCNC</span>
-    </p>
-</div>
+    <div class="w-2/4">
+        <img src="https://qqdcadtuucupjusnjpxh.supabase.co/storage/v1/object/public/web/images/feature-img.png" 
+        alt="">
+    </div>
+    <div class="w-2/4">
+        <p class="text-center text-4xl font-semibold font-poppins pb-5">
+            <span>
+            Elije entre varios tipos de</span><br>
+            <span>alojamientos</span>
+        </p>
+        <p class="text-gray-400 text-xl text-center font-normal font-poppins mb-14">
+            <span>
+            Te ofrecemos varios tipos de alojamientos</span><br>
+            <span>
+            para tu familia y amigos</span>
+        </p>
+        <p class="text-start text-2xl pb-4 font-poppins font-semibold">Los mejores lugares</p>
+        <p class="text-gray-400 items-start mb-14 text-xl">
+            <span>
+            Garantizamos la mejor calidad en tus alojamientos</span><br>
+            <span>Desde AirCNC</span>
+        </p>
+        <p class="text-start text-2xl pb-4 font-poppins font-semibold">Pagos seguros</p>
+        <p class="text-gray-400 items-start mb-14 text-xl">
+            <span>
+            Tus pagos serán seguros</span><br>
+            <span>y siempres serán descontados</span>
+        </p>
+        <p class="text-start text-2xl pb-4 font-poppins font-semibold">Precios bajos y descuentos</p>
+        <p class="text-gray-400 items-start text-xl">
+            <span>
+            Alquilando en AirCNC encontrarás</span><br>
+            <span>descuentos</span>
+        </p>
+    </div>
 </section>
